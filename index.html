@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <!-- Her skal studenten lage en kaffeautomat med flere forskjellige drikker     array. 
+     Her kan man velge og kjøpe forskjellige     kjøpe()     
+    varme drikker så lenge man har penger nok til å kjø       if(penger)    -->
+<ol id="drinks">
+    <!-- <li>Latte</li>
+    <li>Cappucino</li>
+    <li>Mocha</li>
+    <li>Americano</li>
+    <li>Cacao</li> -->
+</ol>
+<div id="penger">Penger:</div>
+<input id="textInput" value="100kr"/>
+<button id="buyBtn" onclick="buyCoffee()">Buy</button>
+<div id="checkOut"></div>
+<script> 
+    // Heter "Latte"
+    // Koster den 25
+    // totalt hvor mange kaffe for eksempel 5x
+    
+    let latte = {
+        name: "Latte",
+        price: 25
+    }
+
+    let drinksObj = [
+        {
+            name: "Latte",
+            price: 25
+        },
+        {
+            name: "Cappucino",
+            price: 17
+        },
+        {
+            name: "Mocha",
+            price: 30
+        },
+        {
+            name: "Americano",
+            price: 40
+        },
+        {
+            name: "Cacao",
+            price: 23,
+        },
+    ]
+
+    let drinks = ['Latte', 'Cappucino', 'Mocha', 'Americano', 'Cacao']
+    let selectedCoffee = [];
+    let money = 100;
+    let input = document.getElementById('textInput')
+    document.getElementById('penger').innerHTML = `<div>${money}kr</div>`
+   
+
+    // let drinks2 = [drinks2]];
+    
+    // showDrinks()
+    // function showDrinks(){
+    //     document.getElementById("drinks").innerHTML = `<li>${drinks[4]}</li>` 
+    // }
+ 
+    // 1. Latte
+    
+    
+    input.addEventListener("keypress", function(event) {
+       if (event.key === "Enter") {
+            event.preventDefault();
+            console.log("Enter has been pressed")
+            money = money + input.value
+            
+        }
+    })
+
+    function buyCoffee(){
+        // loope gjennom -> CHECK
+        // let cost = plusse på pris fra hver drikke -> CHECK
+        // minus på money -> CHECK
+          let cost = 0;
+          for(let i = 0; i < selectedCoffee.length; i++){
+            cost += selectedCoffee[0].price;
+        }
+        money = money - cost;
+        document.getElementById('penger').innerHTML = `<div>${money}kr</div>`
+       
+    }  
+
+     
+    function chooseCoffee(index){
+        //lagrer valgt kaffe
+        selectedCoffee.push(drinksObj[index])  
+        // skriver ut trykket på kaffe
+    
+        document.getElementById('checkOut').innerHTML += `<div>${selectedCoffee[selectedCoffee.length - 1].name}</div>`
+        
+    }
+    showCoffee()
+    function showCoffee(){
+        for(let i = 0; i < drinksObj.length; i++){
+        document.getElementById("drinks").innerHTML += `<li>${drinksObj[i].name}, ${drinksObj[i].price}kr</li><button onclick="chooseCoffee(${i})">Choose coffee</button>`
+        console.log(i)
+    
+    } 
+} 
+    
+
+    
+</script>
+   
+</body>
+</html>
